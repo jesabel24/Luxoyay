@@ -8,61 +8,174 @@
     
     <style>
         :root {
-            --neon-blue: #00d4ff;
+            --violeta-luxo: #6a0dad;
             --neon-green: #00ff88;
-            --violeta-luxo: #6a0dad; /* Violeta oscuro */
             --bg-dark: #0a0a0a;
         }
 
-        /* --- INTRO ANIMACIÓN --- */
+        body {
+            background-color: var(--bg-dark);
+            color: white;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* --- INTRO --- */
         #intro-screen {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background: var(--bg-dark);
             display: flex; justify-content: center; align-items: center;
             z-index: 99999;
-            transition: opacity 1s ease-out;
-        }
-        .logo-animado {
-            width: 300px; 
-            filter: drop-shadow(0 0 15px #ffffff); 
-            animation: aparecerBrillar 2.5s ease-in-out forwards;
-        }
-        @keyframes aparecerBrillar {
-            0% { opacity: 0; transform: scale(0.8); }
-            50% { opacity: 1; transform: scale(1.05); filter: drop-shadow(0 0 30px #ffffff); }
-            100% { opacity: 1; transform: scale(1); }
+            transition: opacity 1s;
         }
         .fade-out { opacity: 0; pointer-events: none; }
-
-        /* --- DISEÑO GENERAL --- */
-        body {
-            background-color: var(--bg-dark);
-            color: white; font-family: 'Roboto', sans-serif;
-            margin: 0; padding: 0; overflow-x: hidden;
-        }
 
         /* --- HEADER --- */
         .header-main {
             display: flex;
             align-items: center;
-            padding: 20px 20px 10px 20px;
+            padding: 20px;
             gap: 15px;
         }
-        .header-main img {
-            height: 70px;
-            filter: none;
-        }
+        .header-main img { height: 60px; }
         .header-main h1 {
             font-family: 'Orbitron', sans-serif;
             color: var(--violeta-luxo);
-            font-size: 2.2rem;
             margin: 0;
-            letter-spacing: 2px;
+            font-size: 1.8rem;
         }
 
-        /* --- MENSAJE DE BIENVENIDA --- */
-        .mensaje-bienvenida {
+        /* --- MENSAJE --- */
+        .slogan {
+            padding: 0 20px 20px 20px;
+            color: #888;
+            font-style: italic;
+        }
+
+        /* --- BANNER --- */
+        .main-banner {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            border-bottom: 3px solid var(--violeta-luxo);
+        }
+
+        /* --- PRODUCTOS --- */
+        .grid-productos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        .card {
+            background: #151515;
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid #333;
+        }
+        .card img { width: 100%; border-radius: 10px; height: 150px; object-fit: cover; }
+        .btn-add {
+            background: var(--violeta-luxo);
+            color: white; border: none; padding: 10px; width: 100%;
+            border-radius: 5px; cursor: pointer; margin-top: 10px;
+        }
+
+        /* --- CATEGORIAS --- */
+        .cat-box {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .cat-tag {
+            display: inline-block;
+            border: 1px solid var(--violeta-luxo);
+            padding: 8px 20px;
+            border-radius: 20px;
+            margin: 5px;
+        }
+
+        /* --- MAPA --- */
+        .map-box { text-align: center; padding: 20px; }
+        iframe { width: 100%; max-width: 600px; height: 300px; border-radius: 15px; border: 1px solid var(--violeta-luxo); }
+
+        /* --- CARRITO --- */
+        .cart {
+            position: fixed;
+            bottom: 20px; right: 20px;
+            width: 280px; background: #111;
+            border: 1px solid var(--violeta-luxo);
+            padding: 15px; border-radius: 15px;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="intro-screen">
+        <h2 style="font-family: 'Orbitron'; color: white;">LUXO YAY</h2>
+    </div>
+
+    <header class="header-main">
+        <img src="https://cdn.discordapp.com/attachments/764669799137411106/1475129625972838410/Copia_de_Copia_de_Copia_de_fashion-removebg-preview.png?ex=699c5d05&is=699b0b85&hm=603828027b7e09961cf5fdf87fa0d70d90fac5ac9698fe1e2d3c96910a07364c&" alt="Logo">
+        <h1>LUXO YAY</h1>
+    </header>
+
+    <div class="slogan">
+        "Animate a lo nuevo, proba nuestros productos"
+    </div>
+
+    <div class="main-banner"></div>
+
+    <div class="grid-productos">
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1527814732931-419a15c3924a?q=80&w=1974&auto=format&fit=crop" alt="producto">
+            <h3>Mouse Gamer</h3>
+            <p style="color:var(--neon-green)">$2.500</p>
+            <button class="btn-add" onclick="agregar('Mouse Gamer', 2500)">Añadir</button>
+        </div>
+    </div>
+
+    <div class="cat-box">
+        <h3>CATEGORÍAS</h3>
+        <div class="cat-tag">TECLADOS</div>
+        <div class="cat-tag">MOUSES</div>
+        <div class="cat-tag">AUDIO</div>
+    </div>
+
+    <div class="map-box">
+        <h3>UBICACIÓN</h3>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3540.672803323067!2d-58.9816!3d-27.4511!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjfCsDI3JzA0LjAiUyA1OMKwNTgnNTMuOCJX!5e0!3m2!1ses!2sar!4v1645555555555!5m2!1ses!2sar"></iframe>
+    </div>
+
+    <div class="cart">
+        <h4 style="margin:0; color:var(--violeta-luxo)">CARRITO</h4>
+        <div id="lista" style="font-size:12px; margin:10px 0;">Vacío</div>
+        <button onclick="enviar()" style="width:100%; background:var(--neon-green); border:none; padding:10px; border-radius:5px; font-weight:bold; cursor:pointer;">WHATSAPP</button>
+    </div>
+
+    <script>
+        // Quitar intro
+        window.onload = () => {
+            setTimeout(() => { document.getElementById('intro-screen').classList.add('fade-out'); }, 2000);
+        };
+
+        let carrito = [];
+        function agregar(n, p) {
+            carrito.push({n, p});
+            document.getElementById('lista').innerHTML = carrito.map(i => `<div>${i.n} - $${i.p}</div>`).join('');
+        }
+
+        function enviar() {
+            if(carrito.length === 0) return alert("Carrito vacío");
+            let m = "Pedido Luxo Yay:%0A";
+            carrito.forEach(i => m += `- ${i.n}%0A`);
+            window.open("https://wa.me/543625701025?text=" + m);
+        }        .mensaje-bienvenida {
             padding: 0 20px 20px 20px;
             text-align: left;
         }
@@ -366,6 +479,7 @@
 
     <div id="intro-screen">
         <img src="
+
 
 
 
