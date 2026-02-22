@@ -29,29 +29,27 @@
         }
 
         .logo-animado {
-    width: 350px; /* Aquí lo hice más grande (antes era 200px) */
-    filter: drop-shadow(0 0 0px #ffffff); /* Color de sombra inicial: blanco */
-    animation: aparecerBrillar 2.5s ease-in-out forwards;
-}
+            width: 350px; 
+            filter: drop-shadow(0 0 0px #ffffff); 
+            animation: aparecerBrillar 2.5s ease-in-out forwards;
         }
 
-       @keyframes aparecerBrillar {
-    0% { 
-        opacity: 0; 
-        transform: scale(0.8); 
-        filter: drop-shadow(0 0 0px #ffffff); 
-    }
-    50% { 
-        opacity: 1; 
-        transform: scale(1.05); 
-        filter: drop-shadow(0 0 30px #ffffff); /* Brillo blanco fuerte en el medio */
-    }
-    100% { 
-        opacity: 1; 
-        transform: scale(1); 
-        filter: drop-shadow(0 0 15px #ffffff); /* Brillo blanco suave al final */
-    }
-}
+        @keyframes aparecerBrillar {
+            0% { 
+                opacity: 0; 
+                transform: scale(0.8); 
+                filter: drop-shadow(0 0 0px #ffffff); 
+            }
+            50% { 
+                opacity: 1; 
+                transform: scale(1.05); 
+                filter: drop-shadow(0 0 30px #ffffff); 
+            }
+            100% { 
+                opacity: 1; 
+                transform: scale(1); 
+                filter: drop-shadow(0 0 15px #ffffff); 
+            }
         }
 
         .fade-out {
@@ -75,7 +73,7 @@
         }
 
         .header-logo img {
-            height: 80px;
+            height: 100px;
             filter: drop-shadow(0 0 5px var(--neon-blue));
         }
 
@@ -111,13 +109,6 @@
             margin-bottom: 15px;
         }
 
-        .prod-card h3 {
-            margin: 10px 0;
-            font-size: 1.1rem;
-            color: #ffffff;
-            font-weight: 400;
-        }
-
         .precio {
             font-family: 'Orbitron', sans-serif;
             color: var(--neon-green);
@@ -135,15 +126,8 @@
             cursor: pointer;
             width: 100%;
             font-family: 'Orbitron', sans-serif;
-            transition: 0.3s;
         }
 
-        .btn-add:hover {
-            background: white;
-            box-shadow: 0 0 15px white;
-        }
-
-        /* --- CARRITO FLOTANTE --- */
         .floating-cart {
             position: fixed;
             bottom: 25px;
@@ -165,7 +149,6 @@
             max-height: 180px;
             overflow-y: auto;
             margin-bottom: 15px;
-            font-size: 0.9rem;
         }
 
         .item-carrito {
@@ -174,6 +157,17 @@
             margin-bottom: 8px;
             border-bottom: 1px solid #333;
             padding-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            background: #252525;
+            border: 1px solid #444;
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
         }
 
         .btn-finalizar {
@@ -186,17 +180,6 @@
             font-weight: bold;
             cursor: pointer;
             font-family: 'Orbitron', sans-serif;
-        }
-
-        input {
-            width: 100%;
-            padding: 12px;
-            background: #252525;
-            border: 1px solid #444;
-            color: white;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            box-sizing: border-box;
         }
     </style>
 </head>
@@ -212,18 +195,18 @@
 
     <div class="grid-productos">
         <div class="prod-card">
-            <img src="URL_PRODUCTO_1" class="prod-img">
-            <h3>Producto Gamer 1</h3>
+            <img src="URL_IMAGEN_TECLADO" class="prod-img">
+            <h3>Teclado Mecánico RGB</h3>
             <p class="precio">$1.500</p>
-            <button class="btn-add" onclick="agregar('Producto 1', 1500)">+ AÑADIR</button>
+            <button class="btn-add" onclick="agregar('Teclado Mecánico RGB', 1500)">+ AÑADIR</button>
         </div>
         <div class="prod-card">
-            <img src="URL_PRODUCTO_2" class="prod-img">
-            <h3>Producto Gamer 2</h3>
+            <img src="URL_IMAGEN_MOUSE" class="prod-img">
+            <h3>Mouse Gamer Pro</h3>
             <p class="precio">$2.300</p>
-            <button class="btn-add" onclick="agregar('Producto 2', 2300)">+ AÑADIR</button>
+            <button class="btn-add" onclick="agregar('Mouse Gamer Pro', 2300)">+ AÑADIR</button>
         </div>
-        </div>
+    </div>
 
     <div class="floating-cart">
         <h3 style="color: var(--neon-blue); font-family: 'Orbitron'; font-size: 14px; margin-top: 0;">CARRITO DE COMPRAS</h3>
@@ -237,14 +220,12 @@
     </div>
 
     <script>
-        // Lógica para quitar la pantalla de inicio
         window.addEventListener('load', () => {
             setTimeout(() => {
                 document.getElementById('intro-screen').classList.add('fade-out');
-            }, 2500); // 2.5 segundos de animación
+            }, 3000); 
         });
 
-        // Lógica del carrito (igual a la anterior pero optimizada)
         function actualizarVisual() {
             const lista = document.getElementById('lista-items');
             const totalTxt = document.getElementById('total-pago');
@@ -295,5 +276,3 @@
     </script>
 </body>
 </html>
-
-
