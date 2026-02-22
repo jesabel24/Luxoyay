@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luxo Yay</title> <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>Luxo Yay</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
             --neon-blue: #00d4ff;
             --neon-green: #00ff88;
-            --violeta-luxo: #6a0dad; /* Violeta oscuro para el nombre */
+            --violeta-luxo: #6a0dad; /* Violeta oscuro */
             --bg-dark: #0a0a0a;
         }
 
-        /* --- INTRO Y ANIMACIÓN --- */
+        /* --- INTRO ANIMACIÓN --- */
         #intro-screen {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -22,22 +23,18 @@
             z-index: 99999;
             transition: opacity 1s ease-out;
         }
-
         .logo-animado {
-            width: 350px; 
-            filter: drop-shadow(0 0 10px #ffffff); 
+            width: 300px; 
+            filter: drop-shadow(0 0 15px #ffffff); 
             animation: aparecerBrillar 2.5s ease-in-out forwards;
         }
-
         @keyframes aparecerBrillar {
             0% { opacity: 0; transform: scale(0.8); }
             50% { opacity: 1; transform: scale(1.05); filter: drop-shadow(0 0 30px #ffffff); }
             100% { opacity: 1; transform: scale(1); }
         }
-
         .fade-out { opacity: 0; pointer-events: none; }
 
-        /* --- DISEÑO GENERAL --- */
         /* --- DISEÑO GENERAL --- */
         body {
             background-color: var(--bg-dark);
@@ -45,173 +42,116 @@
             margin: 0; padding: 0; overflow-x: hidden;
         }
 
-        /* --- HEADER CON LOGO Y TEXTO VIOLETA --- */
+        /* --- HEADER --- */
         .header-main {
             display: flex;
             align-items: center;
-            padding: 20px;
-            gap: 20px;
+            padding: 20px 20px 10px 20px;
+            gap: 15px;
         }
-
         .header-main img {
-            height: 80px;
+            height: 70px;
             filter: none;
         }
-
         .header-main h1 {
             font-family: 'Orbitron', sans-serif;
             color: var(--violeta-luxo);
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             margin: 0;
-            text-shadow: 2px 2px 10px rgba(106, 13, 173, 0.3);
+            letter-spacing: 2px;
         }
 
         /* --- MENSAJE DE BIENVENIDA --- */
-        .mensaje-bienvenida { /* Nueva clase para tu mensaje */
-            padding: 10px 20px;
+        .mensaje-bienvenida {
+            padding: 0 20px 20px 20px;
             text-align: left;
-            margin-left: 20px;
-            margin-bottom: 30px; /* Un poco de espacio antes del banner */
         }
-
         .mensaje-bienvenida h2 {
-            font-size: 1.2rem;
-            color: #bbb;
+            font-size: 1.1rem;
+            color: #888;
             font-weight: 300;
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
         }
 
-        /* --- BANNER PRINCIPAL (IMAGEN GRANDE) --- */
+        /* --- PORTADA (BANNER) --- */
         .main-banner {
             width: 100%;
-            height: 400px; /* Altura del banner */
+            height: 450px;
+            background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2070&auto=format&fit=crop'); /* IMAGEN DE EJEMPLO */
             background-size: cover;
             background-position: center;
+            border-bottom: 4px solid var(--violeta-luxo);
+            margin-bottom: 40px;
+        }
+
+        /* --- PRODUCTOS --- */
+        .grid-productos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px; max-width: 1200px; margin: 0 auto 50px auto;
+            padding: 0 20px;
+        }
+        .prod-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(106, 13, 173, 0.2);
+            padding: 15px; border-radius: 20px; text-align: center;
+            transition: 0.4s;
+        }
+        .prod-card:hover { border-color: var(--violeta-luxo); transform: translateY(-5px); }
+        .prod-img { width: 100%; height: 220px; object-fit: cover; border-radius: 15px; }
+
+        /* --- CATEGORÍAS --- */
+        .categorias-section {
+            padding: 60px 20px;
+            text-align: center;
+            background: #0f0f0f;
+        }
+        .grid-categorias {
             display: flex;
             justify-content: center;
-            align-items: center;
-            margin-bottom: 50px; /* Espacio antes de los productos */
-            border-bottom: 3px solid var(--violeta-luxo); /* Borde para que destaque */
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 25px;
         }
-
-        /* --- MENÚ LATERAL (Mantenido) --- */
-        .menu-btn {
-            position: fixed;
-            top: 25px; right: 25px;
-            z-index: 10001; 
-            background: var(--violeta-luxo);
-            color: white; border: none; padding: 10px 15px;
-            border-radius: 8px; font-size: 20px; cursor: pointer;
+        .cat-card {
+            background: transparent;
+            border: 1px solid var(--violeta-luxo);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-family: 'Orbitron';
+            cursor: pointer;
+            transition: 0.3s;
         }
-        /* ... el resto de tu CSS para el sidebar ... */
+        .cat-card:hover { background: var(--violeta-luxo); box-shadow: 0 0 15px var(--violeta-luxo); }
 
-        /* --- UBICACIÓN --- */
+        /* --- MAPA --- */
         .map-section {
-            padding: 40px 20px;
+            padding: 60px 20px;
             text-align: center;
         }
         iframe {
-            width: 100%;
-            max-width: 800px;
-            height: 300px;
-            border-radius: 20px;
-            border: 1px solid var(--violeta-luxo);
+            width: 100%; max-width: 900px; height: 350px;
+            border-radius: 25px; border: 2px solid var(--violeta-luxo);
             margin-top: 20px;
         }
 
-        /* --- CARRITO --- */
-        .floating-cart {
-            position: fixed;
-            bottom: 25px; right: 25px;
-            width: 300px; background: rgba(18, 18, 18, 0.95);
-            border: 1px solid var(--violeta-luxo); border-radius: 20px;
-            padding: 20px; z-index: 1000;
-        }
-
-        .btn-finalizar { background: var(--neon-green); color: black; border: none; width: 100%; padding: 14px; border-radius: 12px; font-weight: bold; cursor: pointer; }
+        /* --- MENU Y CARRITO --- */
+        .menu-btn { position: fixed; top: 25px; right: 25px; z-index: 10001; background: var(--violeta-luxo); color: white; border: none; padding: 12px 18px; border-radius: 10px; cursor: pointer; font-size: 20px; }
+        .sidebar { position: fixed; top: 0; right: -300px; width: 280px; height: 100%; background: rgba(10,10,10,0.98); border-left: 2px solid var(--violeta-luxo); z-index: 10000; transition: 0.4s; padding: 80px 20px; box-sizing: border-box; }
+        .sidebar.active { right: 0; }
+        .sidebar ul { list-style: none; padding: 0; }
+        .sidebar ul li a { color: white; text-decoration: none; display: block; padding: 15px 0; font-family: 'Orbitron'; font-size: 0.9rem; }
+        
+        .floating-cart { position: fixed; bottom: 25px; right: 25px; width: 300px; background: rgba(18,18,18,0.95); border: 1px solid var(--violeta-luxo); border-radius: 20px; padding: 20px; z-index: 1000; backdrop-filter: blur(10px); }
+        .btn-finalizar { background: var(--neon-green); color: black; border: none; width: 100%; padding: 14px; border-radius: 12px; font-weight: bold; font-family: 'Orbitron'; cursor: pointer; }
     </style>
 </head>
 <body>
 
     <div id="intro-screen">
-        <img src="https://cdn.discordapp.com/attachments/764669799137411106/1475129625972838410/Copia_de_Copia_de_Copia_de_fashion-removebg-preview.png?ex=699c5d05&is=699b0b85&hm=603828027b7e09961cf5fdf87fa0d70d90fac5ac9698fe1e2d3c96910a07364c&" class="logo-animado">
-    </div>
-
-    <header class="header-main">
-        <img src="https://cdn.discordapp.com/attachments/764669799137411106/1475129625972838410/Copia_de_Copia_de_Copia_de_fashion-removebg-preview.png?ex=699c5d05&is=699b0b85&hm=603828027b7e09961cf5fdf87fa0d70d90fac5ac9698fe1e2d3c96910a07364c&" alt="Logo">
-        <h1>LUXO YAY</h1>
-    </header>
-
-    <div class="mensaje-final" style="padding: 10px 20px; text-align: left; margin-left: 20px;">
-        <h2 style="font-size: 1.2rem; color: #bbb;">"Animate a lo nuevo, proba nuestros productos"</h2>
-    </div>
-
-    <section class="categorias-section">
-        <h2 style="font-family:'Orbitron'">Nuestras Categorías</h2>
-        <div class="grid-categorias">
-            <div class="cat-card">Teclados</div>
-            <div class="cat-card">Mouses</div>
-            <div class="cat-card">Audio</div>
-            <div class="cat-card">PC Pro</div>
-        </div>
-    
-    <div class="floating-cart">
-        <h3 style="color: var(--violeta-luxo); font-family: 'Orbitron'; margin-top: 0;">Carrito</h3>
-        <div id="lista-items"><i>Vacío</i></div>
-        <hr style="border:0.5px solid #333">
-        <div style="display:flex; justify-content:space-between; margin:10px 0;">
-            <span>TOTAL:</span>
-            <span>$<span id="total-pago">0</span></span>
-        </div>
-        <button class="btn-finalizar" onclick="enviarPedido()">PEDIR POR WHATSAPP</button>
-    </div>
-
-    <script>
-        window.addEventListener('load', () => {
-            setTimeout(() => { document.getElementById('intro-screen').classList.add('fade-out'); }, 2500);
-        });
-
-        function toggleMenu() { document.getElementById('sidebar').classList.toggle('active'); }
-
-        function agregar(nombre, precio) {
-            let carrito = JSON.parse(localStorage.getItem('mi_tienda_neon')) || [];
-            carrito.push({ nombre, precio });
-            localStorage.setItem('mi_tienda_neon', JSON.stringify(carrito));
-            actualizarVisual();
-        }
-
-        function actualizarVisual() {
-            const lista = document.getElementById('lista-items');
-            const totalTxt = document.getElementById('total-pago');
-            let carrito = JSON.parse(localStorage.getItem('mi_tienda_neon')) || [];
-            if (carrito.length === 0) {
-                lista.innerHTML = "<i>Vacío</i>";
-                totalTxt.innerText = "0";
-            } else {
-                let total = 0;
-                lista.innerHTML = carrito.map((item, index) => {
-                    total += item.precio;
-                    return `<div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:5px;">
-                        <span>${item.nombre}</span>
-                        <span>$${item.precio}</span>
-                    </div>`;
-                }).join('');
-                totalTxt.innerText = total;
-            }
-        }
-
-        function enviarPedido() {
-            let carrito = JSON.parse(localStorage.getItem('mi_tienda_neon')) || [];
-            if (carrito.length === 0) return;
-            let msj = `*NUEVO PEDIDO EN LUXO YAY*%0A%0A`;
-            let total = 0;
-            carrito.forEach(item => { msj += `• ${item.nombre} ($${item.precio})%0A`; total += item.precio; });
-            msj += `%0A*TOTAL: $${total}*`;
-            window.open(`https://wa.me/543625701025?text=${msj}`, '_blank');
-        }
-        actualizarVisual();
-    </script>
-</body>
-</html>
+        <img src="
 
 
 
