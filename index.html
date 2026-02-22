@@ -3,65 +3,232 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luxo Yay</title>
+    <title>Luxo Yay | Tech Store</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --violeta-luxo: #6a0dad;
+            --neon-blue: #00d4ff;
             --neon-green: #00ff88;
             --bg-dark: #0a0a0a;
         }
 
-        body {
-            background-color: var(--bg-dark);
-            color: white;
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-        }
-
-        /* --- INTRO --- */
+        /* --- INTRO ANIMACIÓN --- */
         #intro-screen {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background: var(--bg-dark);
             display: flex; justify-content: center; align-items: center;
             z-index: 99999;
-            transition: opacity 1s;
+            transition: opacity 1s ease-out;
+        }
+        .logo-animado {
+            width: 300px; 
+            filter: drop-shadow(0 0 15px #ffffff); 
+            animation: aparecerBrillar 2.5s ease-in-out forwards;
+        }
+        @keyframes aparecerBrillar {
+            0% { opacity: 0; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.05); filter: drop-shadow(0 0 30px #ffffff); }
+            100% { opacity: 1; transform: scale(1); }
         }
         .fade-out { opacity: 0; pointer-events: none; }
 
-        /* --- HEADER --- */
-        .header-main {
+        /* --- DISEÑO GENERAL --- */
+        body {
+            background-color: var(--bg-dark);
+            color: white; font-family: 'Roboto', sans-serif;
+            margin: 0; padding: 0; overflow-x: hidden;
+        }
+
+        /* --- PORTADA (HERO) --- */
+        .hero {
+            height: 80vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(10,10,10,1)), url('URL_DE_TU_IMAGEN_DE_PORTADA');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            color: white;
+            text-shadow: 0 0 20px var(--neon-blue);
+            margin: 0;
+        }
+
+        /* --- CARRUSEL DE OFERTAS --- */
+        .seccion-titulo {
+            font-family: 'Orbitron', sans-serif;
+            text-align: center;
+            color: var(--neon-green);
+            margin: 50px 0 20px;
+        }
+
+        .carrusel-container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+            border-radius: 20px;
+        }
+
+        .carrusel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .oferta-card {
+            min-width: 100%;
+            background: rgba(255,255,255,0.05);
             display: flex;
             align-items: center;
             padding: 20px;
-            gap: 15px;
-        }
-        .header-main img { height: 60px; }
-        .header-main h1 {
-            font-family: 'Orbitron', sans-serif;
-            color: var(--violeta-luxo);
-            margin: 0;
-            font-size: 1.8rem;
+            box-sizing: border-box;
         }
 
-        /* --- MENSAJE --- */
-        .slogan {
-            padding: 0 20px 20px 20px;
-            color: #888;
-            font-style: italic;
+        .oferta-img {
+            width: 40%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 15px;
         }
 
-        /* --- BANNER --- */
-        .main-banner {
+        .oferta-info {
+            padding-left: 30px;
+        }
+
+        /* --- MAPA Y UBICACIÓN --- */
+        .ubicacion-container {
+            padding: 50px 20px;
+            text-align: center;
+            background: #111;
+        }
+
+        .mapa-cuadro {
             width: 100%;
-            height: 300px;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
+            max-width: 800px;
+            height: 400px;
+            border-radius: 20px;
+            border: 2px solid var(--neon-blue);
+            margin-top: 20px;
+        }
+
+        /* --- MENÚ Y CARRITO (Mantenidos del anterior) --- */
+        .menu-btn { position: fixed; top: 25px; right: 25px; z-index: 10001; background: var(--neon-blue); border: none; padding: 10px 15px; border-radius: 8px; cursor: pointer; font-family: 'Orbitron'; }
+        .sidebar { position: fixed; top: 0; right: -300px; width: 280px; height: 100%; background: rgba(10,10,10,0.98); border-left: 2px solid var(--neon-blue); z-index: 10000; transition: 0.4s; padding: 80px 20px; }
+        .sidebar.active { right: 0; }
+        .floating-cart { position: fixed; bottom: 25px; right: 25px; width: 300px; background: rgba(18,18,18,0.95); border: 1px solid var(--neon-blue); border-radius: 20px; padding: 20px; z-index: 1000; }
+    </style>
+</head>
+<body>
+
+    <div id="intro-screen">
+        <img src="https://cdn.discordapp.com/attachments/764669799137411106/1475129625972838410/Copia_de_Copia_de_Copia_de_fashion-removebg-preview.png?..." class="logo-animado">
+    </div>
+
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+    <nav class="sidebar" id="sidebar">
+        <h2>MENÚ</h2>
+        <ul>
+            <li><a href="#" onclick="toggleMenu()">🏠 Inicio</a></li>
+            <li><a href="#ofertas" onclick="toggleMenu()">🔥 Ofertas</a></li>
+            <li><a href="#mapa" onclick="toggleMenu()">📍 Ubicación</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <h1>LUXO YAY</h1>
+        <p style="color: var(--neon-blue); font-family: 'Orbitron';">EL FUTURO DE LA TECNOLOGÍA</p>
+    </header>
+
+    <h2 class="seccion-titulo" id="ofertas">OFERTAS EXCLUSIVAS</h2>
+    <div class="carrusel-container">
+        <div class="carrusel-track" id="track">
+            <div class="oferta-card">
+                <img src="URL_IMAGEN_OFERTA_1" class="oferta-img">
+                <div class="oferta-info">
+                    <h3>Teclado Mecánico Pro</h3>
+                    <p style="color:var(--neon-green); font-size: 20px;">$1.200 <span style="text-decoration: line-through; color: gray; font-size: 14px;">$1.800</span></p>
+                    <button class="btn-add" onclick="agregar('Teclado Oferta', 1200)" style="padding: 10px; background: var(--neon-blue); border: none; border-radius: 10px; cursor: pointer;">AÑADIR</button>
+                </div>
+            </div>
+            <div class="oferta-card">
+                <img src="URL_IMAGEN_OFERTA_2" class="oferta-img">
+                <div class="oferta-info">
+                    <h3>Headset 7.1 Surround</h3>
+                    <p style="color:var(--neon-green); font-size: 20px;">$2.500</p>
+                    <button class="btn-add" onclick="agregar('Headset Oferta', 2500)" style="padding: 10px; background: var(--neon-blue); border: none; border-radius: 10px; cursor: pointer;">AÑADIR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ubicacion-container" id="mapa">
+        <h2 class="seccion-titulo">NUESTRO LOCAL</h2>
+        <p>📍 Av. Principal 123 - Ciudad, País</p>
+        <p>⏰ Lunes a Sábado: 09:00 - 20:00</p>
+        
+        <iframe class="mapa-cuadro" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3540.648231268028!2d-58.9839423!3d-27.4491!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjfCsDI2JzU2LjgiUyA1OMKwNTknMDIuMiJX!5e0!3m2!1ses!2sar!4v1620000000000!5m2!1ses!2sar" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+
+    <div class="floating-cart">
+        <h4 style="margin:0; color:var(--neon-blue); font-family: 'Orbitron';">CARRITO</h4>
+        <div id="lista-items" style="font-size: 12px; margin: 10px 0; max-height: 100px; overflow-y: auto;"><i>Vacío</i></div>
+        <button class="btn-finalizar" onclick="enviarPedido()" style="width:100%; background:var(--neon-green); border:none; padding:10px; border-radius:5px; font-weight:bold; cursor:pointer;">WHATSAPP</button>
+    </div>
+
+    <script>
+        // Intro
+        window.addEventListener('load', () => {
+            setTimeout(() => { document.getElementById('intro-screen').classList.add('fade-out'); }, 2500);
+        });
+
+        // Menú
+        function toggleMenu() { document.getElementById('sidebar').classList.toggle('active'); }
+
+        // Carrusel Automático
+        let index = 0;
+        const track = document.getElementById('track');
+        function moverCarrusel() {
+            index++;
+            if (index > 1) index = 0; // Cambia 1 por el número total de ofertas menos 1
+            track.style.transform = `translateX(-${index * 100}%)`;
+        }
+        setInterval(moverCarrusel, 4000); // Cambia cada 4 segundos
+
+        // Lógica Carrito (Mantenida)
+        function actualizarVisual() {
+            const lista = document.getElementById('lista-items');
+            let carrito = JSON.parse(localStorage.getItem('mi_tienda_neon')) || [];
+            if (carrito.length === 0) { lista.innerHTML = "Vacío"; } 
+            else {
+                lista.innerHTML = carrito.map((item, i) => `<div>${item.nombre} $${item.precio}</div>`).join('');
+            }
+        }
+        function agregar(nombre, precio) {
+            let carrito = JSON.parse(localStorage.getItem('mi_tienda_neon')) || [];
+            carrito.push({ nombre, precio });
+            localStorage.setItem('mi_tienda_neon', JSON.stringify(carrito));
+            actualizarVisual();
+        }
+        function enviarPedido() {
+            let carrito = JSON.parse(localStorage.getItem('mi_tienda_neon')) || [];
+            let msj = "*PEDIDO LUXO YAY*%0A";
+            carrito.forEach(i => msj += `- ${i.nombre}%0A`);
+            window.open(`https://wa.me/543625701025?text=${msj}`);
+        }
+    </script>
+</body>
+</html>
+
             border-bottom: 3px solid var(--violeta-luxo);
         }
 
@@ -479,6 +646,7 @@
 
     <div id="intro-screen">
         <img src="
+
 
 
 
