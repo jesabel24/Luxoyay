@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Tienda de Electrónica</title>
+    <title>Tech Store Neón</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     
     <style>
@@ -13,72 +13,114 @@
             --bg-dark: #0a0a0a;
         }
 
+        /* --- ANIMACIÓN DE ENTRADA (INTRO) --- */
+        #intro-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 1s ease-out;
+        }
+
+        .logo-animado {
+            width: 200px; /* Ajusta el tamaño de tu logo */
+            filter: drop-shadow(0 0 0px var(--neon-blue));
+            animation: aparecerBrillar 2.5s ease-in-out forwards;
+        }
+
+        @keyframes aparecerBrillar {
+            0% { opacity: 0; transform: scale(0.8); filter: drop-shadow(0 0 0px var(--neon-blue)); }
+            50% { opacity: 1; transform: scale(1.05); filter: drop-shadow(0 0 20px var(--neon-blue)); }
+            100% { opacity: 1; transform: scale(1); filter: drop-shadow(0 0 10px var(--neon-blue)); }
+        }
+
+        .fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* --- ESTILOS DE LA TIENDA --- */
         body {
             background-color: var(--bg-dark);
             color: white;
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 20px;
-            background-image: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #0a0a0a 100%);
-            min-height: 200vh; /* Para probar el scroll */
+            overflow-x: hidden;
         }
 
-        h1 {
-            font-family: 'Orbitron', sans-serif;
+        .header-logo {
             text-align: center;
-            color: var(--neon-blue);
-            text-shadow: 0 0 10px var(--neon-blue);
-            margin-bottom: 40px;
+            padding: 40px 0;
         }
 
-        /* CONTENEDOR DE PRODUCTOS */
+        .header-logo img {
+            height: 80px;
+            filter: drop-shadow(0 0 5px var(--neon-blue));
+        }
+
         .grid-productos {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            max-width: 1000px;
-            margin: 0 auto 100px auto;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            max-width: 1100px;
+            margin: 0 auto 150px auto;
         }
 
-        /* TARJETA DE PRODUCTO */
         .prod-card {
             background: rgba(255, 255, 255, 0.03);
-            border: 2px solid var(--neon-blue);
-            padding: 20px;
-            border-radius: 15px;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            padding: 15px;
+            border-radius: 20px;
             text-align: center;
-            transition: 0.3s;
-            box-shadow: 0 0 10px rgba(0, 212, 255, 0.1);
+            transition: 0.4s;
+            backdrop-filter: blur(5px);
         }
 
         .prod-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 20px var(--neon-blue);
-            background: rgba(0, 212, 255, 0.05);
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+            transform: translateY(-10px);
+        }
+
+        .prod-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 15px;
         }
 
         .prod-card h3 {
-            margin: 0;
-            font-size: 1.2rem;
-            color: #ffffff; /* Blanco normal como pediste */
+            margin: 10px 0;
+            font-size: 1.1rem;
+            color: #ffffff;
+            font-weight: 400;
         }
 
         .precio {
             font-family: 'Orbitron', sans-serif;
             color: var(--neon-green);
-            font-size: 1.5rem;
-            margin: 15px 0;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
         }
 
         .btn-add {
             background: var(--neon-blue);
             color: black;
             border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
+            padding: 12px;
+            border-radius: 12px;
             font-weight: bold;
             cursor: pointer;
             width: 100%;
+            font-family: 'Orbitron', sans-serif;
             transition: 0.3s;
         }
 
@@ -87,36 +129,29 @@
             box-shadow: 0 0 15px white;
         }
 
-        /* CARRITO FLOTANTE REAL */
+        /* --- CARRITO FLOTANTE --- */
         .floating-cart {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
+            bottom: 25px;
+            right: 25px;
             width: 320px;
-            background: #121212;
+            background: rgba(18, 18, 18, 0.95);
             border: 1px solid var(--neon-blue);
-            border-radius: 15px;
+            border-radius: 20px;
             padding: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.9);
             z-index: 1000;
-        }
-
-        .cart-title {
-            color: var(--neon-blue);
-            font-family: 'Orbitron', sans-serif;
-            font-size: 14px;
-            margin: 0 0 15px 0;
-            text-align: center;
+            backdrop-filter: blur(10px);
         }
 
         #lista-items {
-            background: #1e1e1e;
-            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
             padding: 10px;
-            max-height: 150px;
+            max-height: 180px;
             overflow-y: auto;
-            font-size: 13px;
             margin-bottom: 15px;
+            font-size: 0.9rem;
         }
 
         .item-carrito {
@@ -127,85 +162,82 @@
             padding-bottom: 5px;
         }
 
-        .btn-del {
-            color: #ff4444;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        .total-box {
-            display: flex;
-            justify-content: space-between;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-
-        input {
-            width: 100%;
-            padding: 10px;
-            background: #252525;
-            border: 1px solid #444;
-            color: white;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            box-sizing: border-box;
-        }
-
         .btn-finalizar {
             background: var(--neon-green);
             color: black;
             border: none;
             width: 100%;
-            padding: 12px;
-            border-radius: 8px;
+            padding: 14px;
+            border-radius: 12px;
             font-weight: bold;
             cursor: pointer;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            background: #252525;
+            border: 1px solid #444;
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
         }
     </style>
 </head>
 <body>
 
-    <h1>TECH STORE NEÓN</h1>
+    <div id="intro-screen">
+        <img src="URL_DE_TU_LOGO" class="logo-animado" alt="Cargando...">
+    </div>
+
+    <div class="header-logo">
+        <img src="URL_DE_TU_LOGO" alt="Logo">
+    </div>
 
     <div class="grid-productos">
         <div class="prod-card">
-            <h3>Teclado Mecánico RGB</h3>
-            <p class="precio">$500</p>
-            <button class="btn-add" onclick="agregar('Teclado Mecánico RGB', 500)">🛒 AGREGAR</button>
+            <img src="URL_PRODUCTO_1" class="prod-img">
+            <h3>Producto Gamer 1</h3>
+            <p class="precio">$1.500</p>
+            <button class="btn-add" onclick="agregar('Producto 1', 1500)">+ AÑADIR</button>
         </div>
         <div class="prod-card">
-            <h3>Mouse Gamer 16000 DPI</h3>
-            <p class="precio">$300</p>
-            <button class="btn-add" onclick="agregar('Mouse Gamer 16000 DPI', 300)">🛒 AGREGAR</button>
+            <img src="URL_PRODUCTO_2" class="prod-img">
+            <h3>Producto Gamer 2</h3>
+            <p class="precio">$2.300</p>
+            <button class="btn-add" onclick="agregar('Producto 2', 2300)">+ AÑADIR</button>
         </div>
-        <div class="prod-card">
-            <h3>Auriculares 7.1 Pro</h3>
-            <p class="precio">$450</p>
-            <button class="btn-add" onclick="agregar('Auriculares 7.1 Pro', 450)">🛒 AGREGAR</button>
         </div>
-    </div>
 
     <div class="floating-cart">
-        <h3 class="cart-title">⚡ RESUMEN DE COMPRA</h3>
-        <div id="lista-items">
-            <i>Tu carrito está vacío</i>
-        </div>
-        <div class="total-box">
+        <h3 style="color: var(--neon-blue); font-family: 'Orbitron'; font-size: 14px; margin-top: 0;">CARRITO DE COMPRAS</h3>
+        <div id="lista-items"><i>Cargando pedido...</i></div>
+        <div style="display:flex; justify-content:space-between; margin-bottom:15px; font-weight:bold;">
             <span>TOTAL:</span>
-            <span style="color: var(--neon-blue);">$<span id="total-pago">0</span></span>
+            <span style="color:var(--neon-blue);">$<span id="total-pago">0</span></span>
         </div>
-        <input type="text" id="nombre-cliente" placeholder="Tu Nombre">
-        <button class="btn-finalizar" onclick="enviarPedido()">✅ PEDIR POR WHATSAPP</button>
+        <input type="text" id="nombre-cliente" placeholder="Tu Nombre y Apellido">
+        <button class="btn-finalizar" onclick="enviarPedido()">ENVIAR A WHATSAPP</button>
     </div>
 
     <script>
+        // Lógica para quitar la pantalla de inicio
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('intro-screen').classList.add('fade-out');
+            }, 2500); // 2.5 segundos de animación
+        });
+
+        // Lógica del carrito (igual a la anterior pero optimizada)
         function actualizarVisual() {
             const lista = document.getElementById('lista-items');
             const totalTxt = document.getElementById('total-pago');
             let carrito = JSON.parse(localStorage.getItem('mi_tienda_neon')) || [];
             
             if (carrito.length === 0) {
-                lista.innerHTML = "<i>Tu carrito está vacío</i>";
+                lista.innerHTML = "<i>El carrito está vacío</i>";
                 totalTxt.innerText = "0";
             } else {
                 let total = 0;
@@ -213,7 +245,7 @@
                     total += item.precio;
                     return `<div class="item-carrito">
                         <span>${item.nombre}</span>
-                        <span>$${item.precio} <span class="btn-del" onclick="borrar(${index})">✕</span></span>
+                        <span>$${item.precio} <span style="color:red; cursor:pointer;" onclick="borrar(${index})">✕</span></span>
                     </div>`;
                 }).join('');
                 totalTxt.innerText = total;
@@ -237,19 +269,14 @@
         function enviarPedido() {
             const nombre = document.getElementById('nombre-cliente').value;
             let carrito = JSON.parse(localStorage.getItem('mi_tienda_neon')) || [];
-            if (!nombre || carrito.length === 0) { alert("Nombre y productos requeridos"); return; }
-
-            let msj = `*⚡ NUEVO PEDIDO NEÓN*%0A*Cliente:* ${nombre}%0A%0A`;
+            if (!nombre || carrito.length === 0) { alert("Completa tus datos"); return; }
+            let msj = `*NUEVO PEDIDO*%0A*Cliente:* ${nombre}%0A%0A`;
             let total = 0;
-            carrito.forEach(item => {
-                msj += `• ${item.nombre} ($${item.precio})%0A`;
-                total += item.precio;
-            });
+            carrito.forEach(item => { msj += `• ${item.nombre} ($${item.precio})%0A`; total += item.precio; });
             msj += `%0A*TOTAL: $${total}*`;
             window.open(`https://wa.me/543625701025?text=${msj}`, '_blank');
         }
 
-        // Carga inicial
         actualizarVisual();
     </script>
 </body>
