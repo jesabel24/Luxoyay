@@ -67,15 +67,28 @@
             overflow-x: hidden;
         }
 
-        .header-logo {
-            text-align: center;
-            padding: 40px 0;
-        }
+        /* DISEÑO PARA COMPUTADORA */
+.header-logo {
+    text-align: left; /* Logo a la izquierda */
+    padding: 20px 0 20px 40px; /* Espacio arriba y a la izquierda */
+}
 
-        .header-logo img {
-            height: 100px;
-            filter: drop-shadow(0 0 5px var(--neon-blue));
-        }
+.header-logo img {
+    height: 80px; /* Tamaño del logo arriba */
+    filter: none; /* Sin brillo neón */
+    transition: 0.3s;
+}
+
+/* DISEÑO ESPECIAL PARA CELULARES (Esto responde tu pregunta) */
+@media (max-width: 600px) {
+    .header-logo {
+        text-align: center; /* En celular se ve mejor centrado */
+        padding: 20px 0;
+    }
+    .header-logo img {
+        height: 60px; /* Un poco más pequeño para que no ocupe toda la pantalla */
+    }
+}
 
         .grid-productos {
             display: grid;
@@ -276,3 +289,4 @@
     </script>
 </body>
 </html>
+
