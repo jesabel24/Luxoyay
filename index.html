@@ -29,15 +29,29 @@
         }
 
         .logo-animado {
-            width: 200px; /* Ajusta el tamaño de tu logo */
-            filter: drop-shadow(0 0 0px var(--neon-blue));
-            animation: aparecerBrillar 2.5s ease-in-out forwards;
+    width: 350px; /* Aquí lo hice más grande (antes era 200px) */
+    filter: drop-shadow(0 0 0px #ffffff); /* Color de sombra inicial: blanco */
+    animation: aparecerBrillar 2.5s ease-in-out forwards;
+}
         }
 
-        @keyframes aparecerBrillar {
-            0% { opacity: 0; transform: scale(0.8); filter: drop-shadow(0 0 0px var(--neon-blue)); }
-            50% { opacity: 1; transform: scale(1.05); filter: drop-shadow(0 0 20px var(--neon-blue)); }
-            100% { opacity: 1; transform: scale(1); filter: drop-shadow(0 0 10px var(--neon-blue)); }
+       @keyframes aparecerBrillar {
+    0% { 
+        opacity: 0; 
+        transform: scale(0.8); 
+        filter: drop-shadow(0 0 0px #ffffff); 
+    }
+    50% { 
+        opacity: 1; 
+        transform: scale(1.05); 
+        filter: drop-shadow(0 0 30px #ffffff); /* Brillo blanco fuerte en el medio */
+    }
+    100% { 
+        opacity: 1; 
+        transform: scale(1); 
+        filter: drop-shadow(0 0 15px #ffffff); /* Brillo blanco suave al final */
+    }
+}
         }
 
         .fade-out {
@@ -281,4 +295,5 @@
     </script>
 </body>
 </html>
+
 
