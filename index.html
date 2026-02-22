@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Tienda de Electrónica</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --neon-blue: #00d4ff;
+            --neon-green: #00ff88;
+            --bg-dark: #0a0a0a;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: white;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-image: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #0a0a0a 100%);
+            min-height: 200vh; /* Para probar el scroll */
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            text-align: center;
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px var(--neon-blue);
+            margin-bottom: 40px;
+        }
+
+        /* CONTENEDOR DE PRODUCTOS */
+        .grid-productos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto 100px auto;
+        }
+
+        /* TARJETA DE PRODUCTO */
+        .prod-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px solid var(--neon-blue);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            transition: 0.3s;
+            box-shadow: 0 0 10px rgba(0, 212, 255, 0.1);
+        }
+
+        .prod-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px var(--neon-blue);
+            background: rgba(0, 212, 255, 0.05);
+        }
+
+        .prod-card h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: #ffffff; /* Blanco normal como pediste */
+        }
+
+        .precio {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-green);
+            font-size: 1.5rem;
+            margin: 15px 0;
+        }
+
+        .btn-add {
+            background: var(--neon-blue);
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.3s;
+        }
+
+        .btn-add:hover {
+            background: white;
+            box-shadow: 0 0 15px white;
+        }
+
+        /* CARRITO FLOTANTE REAL */
+        .floating-cart {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 320px;
+            background: #121212;
+            border: 1px solid var(--neon-blue);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            z-index: 1000;
+        }
+
+        .cart-title {
+            color: var(--neon-blue);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 14px;
+            margin: 0 0 15px 0;
+            text-align: center;
+        }
+
+        #lista-items {
+            background: #1e1e1e;
+            border-radius: 8px;
+            padding: 10px;
+            max-height: 150px;
+            overflow-y: auto;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .item-carrito {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 5px;
+        }
+
+        .btn-del {
+            color: #ff4444;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .total-box {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            background: #252525;
+            border: 1px solid #444;
+            color: white;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        .btn-finalizar {
+            background: var(--neon-green);
+            color: black;
+            border: none;
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>TECH STORE NEÓN</h1>
+
+    <div class="grid-productos">
+        <div class="prod-card">
+            <h3>Teclado Mecánico RGB</h3>
+            <p class="precio">$500</p>
+            <button class="btn-add" onclick="agregar('Teclado Mecánico RGB', 500)">🛒 AGREGAR</button>
+        </div>
+        <div class="prod-card">
+            <h3>Mouse Gamer 16000 DPI</h3>
+            <p class="precio">$300</p>
+            <button class="btn-add" onclick="agregar('Mouse Gamer 16000 DPI', 300)">🛒 AGREGAR</button>
+        </div>
+        <div class="prod-card">
+            <h3>Auriculares 7.1 Pro</h3>
+            <p class="precio">$450</p>
+            <button class="btn-add" onclick="agregar('Auriculares 7.1 Pro', 450)">🛒 AGREGAR</button>
+        </div>
+    </div>
+
+    <div class="floating-cart">
+        <h3 class="cart-title">⚡ RESUMEN DE COMPRA</h3>
+        <div id="lista-items">
+            <i>Tu carrito está vacío</i>
+        </div>
+        <div class="total-box">
+            <span>TOTAL:</span>
+            <span style="color: var(--neon-blue);">$<span id="total-pago">0</span></span>
+        </div>
+        <input type="text" id="nombre-cliente" placeholder="Tu Nombre">
+        <button class="btn-finalizar" onclick="enviarPedido()">✅ PEDIR POR WHATSAPP</button>
+    </div>
+
+    <script>
+        function actualizarVisual() {
+            const lista = document.getElementById('lista-items');
+            const totalTxt = document.getElementById('total-pago');
+            let carrito = JSON.parse(localStorage.getItem('mi_tienda_neon')) || [];
+            
+            if (carrito.length === 0) {
+                lista.innerHTML = "<i>Tu carrito está vacío</i>";
+                totalTxt.innerText = "0";
+            } else {
+                let total = 0;
+                lista.innerHTML = carrito.map((item, index) => {
+                    total += item.precio;
+                    return `<div class="item-carrito">
+                        <span>${item.nombre}</span>
+                        <span>$${item.precio} <span class="btn-del" onclick="borrar(${index})">✕</span></span>
+                    </div>`;
+                }).join('');
+                totalTxt.innerText = total;
+            }
+        }
+
+        function agregar(nombre, precio) {
+            let carrito = JSON.parse(localStorage.getItem('mi_tienda_neon')) || [];
+            carrito.push({ nombre, precio });
+            localStorage.setItem('mi_tienda_neon', JSON.stringify(carrito));
+            actualizarVisual();
+        }
+
+        function borrar(index) {
+            let carrito = JSON.parse(localStorage.getItem('mi_tienda_neon')) || [];
+            carrito.splice(index, 1);
+            localStorage.setItem('mi_tienda_neon', JSON.stringify(carrito));
+            actualizarVisual();
+        }
+
+        function enviarPedido() {
+            const nombre = document.getElementById('nombre-cliente').value;
+            let carrito = JSON.parse(localStorage.getItem('mi_tienda_neon')) || [];
+            if (!nombre || carrito.length === 0) { alert("Nombre y productos requeridos"); return; }
+
+            let msj = `*⚡ NUEVO PEDIDO NEÓN*%0A*Cliente:* ${nombre}%0A%0A`;
+            let total = 0;
+            carrito.forEach(item => {
+                msj += `• ${item.nombre} ($${item.precio})%0A`;
+                total += item.precio;
+            });
+            msj += `%0A*TOTAL: $${total}*`;
+            window.open(`https://wa.me/543625701025?text=${msj}`, '_blank');
+        }
+
+        // Carga inicial
+        actualizarVisual();
+    </script>
+</body>
+</html>
