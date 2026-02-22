@@ -13,18 +13,13 @@
             --bg-dark: #0a0a0a;
         }
 
-        /* --- ANIMACIÓN DE ENTRADA (INTRO) --- */
+        /* --- INTRO Y ANIMACIÓN --- */
         #intro-screen {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             background: var(--bg-dark);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
+            display: flex; justify-content: center; align-items: center;
+            z-index: 99999;
             transition: opacity 1s ease-out;
         }
 
@@ -35,225 +30,176 @@
         }
 
         @keyframes aparecerBrillar {
-            0% { 
-                opacity: 0; 
-                transform: scale(0.8); 
-                filter: drop-shadow(0 0 0px #ffffff); 
-            }
-            50% { 
-                opacity: 1; 
-                transform: scale(1.05); 
-                filter: drop-shadow(0 0 30px #ffffff); 
-            }
-            100% { 
-                opacity: 1; 
-                transform: scale(1); 
-                filter: drop-shadow(0 0 15px #ffffff); 
-            }
+            0% { opacity: 0; transform: scale(0.8); filter: drop-shadow(0 0 0px #ffffff); }
+            50% { opacity: 1; transform: scale(1.05); filter: drop-shadow(0 0 30px #ffffff); }
+            100% { opacity: 1; transform: scale(1); filter: drop-shadow(0 0 15px #ffffff); }
         }
 
-        .fade-out {
-            opacity: 0;
-            pointer-events: none;
+        .fade-out { opacity: 0; pointer-events: none; }
+
+        /* --- MENÚ LATERAL (SIDEBAR) --- */
+        .menu-btn {
+            position: fixed;
+            top: 25px; right: 25px;
+            z-index: 10001; 
+            background: var(--neon-blue);
+            color: black; border: none; padding: 10px 15px;
+            border-radius: 8px; font-size: 20px; cursor: pointer;
+            font-family: 'Orbitron', sans-serif;
+            box-shadow: 0 0 10px var(--neon-blue);
         }
 
-        /* --- ESTILOS DE LA TIENDA --- */
+        .sidebar {
+            position: fixed;
+            top: 0; right: -300px; 
+            width: 280px; height: 100%;
+            background: rgba(10, 10, 10, 0.98);
+            border-left: 2px solid var(--neon-blue);
+            z-index: 10000;
+            transition: 0.4s ease-in-out;
+            padding: 80px 20px;
+            box-sizing: border-box;
+            backdrop-filter: blur(10px);
+        }
+
+        .sidebar.active { right: 0; }
+
+        .sidebar h2 { color: var(--neon-blue); font-family: 'Orbitron'; border-bottom: 1px solid #333; padding-bottom: 10px; }
+        .sidebar ul { list-style: none; padding: 0; }
+        .sidebar ul li { margin: 20px 0; }
+        .sidebar ul li a { color: white; text-decoration: none; font-size: 1.1rem; transition: 0.3s; }
+        .sidebar ul li a:hover { color: var(--neon-blue); padding-left: 10px; }
+
+        /* --- DISEÑO GENERAL --- */
         body {
             background-color: var(--bg-dark);
-            color: white;
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 20px;
-            overflow-x: hidden;
+            color: white; font-family: 'Roboto', sans-serif;
+            margin: 0; padding: 20px; overflow-x: hidden;
         }
 
-        /* DISEÑO PARA COMPUTADORA */
-.header-logo {
-    text-align: left; /* Logo a la izquierda */
-    padding: 20px 0 20px 40px; /* Espacio arriba y a la izquierda */
-}
+        .header-logo {
+            text-align: left; /* Logo a la izquierda */
+            padding: 20px 0 20px 20px;
+        }
 
-.header-logo img {
-    height: 80px; /* Tamaño del logo arriba */
-    filter: none; /* Sin brillo neón */
-    transition: 0.3s;
-}
-
-/* DISEÑO ESPECIAL PARA CELULARES (Esto responde tu pregunta) */
-@media (max-width: 600px) {
-    .header-logo {
-        text-align: center; /* En celular se ve mejor centrado */
-        padding: 20px 0;
-    }
-    .header-logo img {
-        height: 60px; /* Un poco más pequeño para que no ocupe toda la pantalla */
-    }
-}
+        .header-logo img {
+            height: 80px;
+            filter: none; /* Sin brillo neón */
+        }
 
         .grid-productos {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            max-width: 1100px;
-            margin: 0 auto 150px auto;
+            gap: 25px; max-width: 1100px; margin: 0 auto 150px auto;
         }
 
         .prod-card {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(0, 212, 255, 0.3);
-            padding: 15px;
-            border-radius: 20px;
-            text-align: center;
-            transition: 0.4s;
-            backdrop-filter: blur(5px);
+            padding: 15px; border-radius: 20px; text-align: center;
+            transition: 0.4s; backdrop-filter: blur(5px);
         }
 
-        .prod-card:hover {
-            border-color: var(--neon-blue);
-            box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
-            transform: translateY(-10px);
-        }
+        .prod-card:hover { border-color: var(--neon-blue); transform: translateY(-10px); }
 
-        .prod-img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 15px;
-            margin-bottom: 15px;
-        }
+        .prod-img { width: 100%; height: 200px; object-fit: cover; border-radius: 15px; margin-bottom: 15px; }
 
-        .precio {
-            font-family: 'Orbitron', sans-serif;
-            color: var(--neon-green);
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-        }
+        .precio { font-family: 'Orbitron'; color: var(--neon-green); font-size: 1.4rem; }
 
         .btn-add {
-            background: var(--neon-blue);
-            color: black;
-            border: none;
-            padding: 12px;
-            border-radius: 12px;
-            font-weight: bold;
-            cursor: pointer;
-            width: 100%;
-            font-family: 'Orbitron', sans-serif;
+            background: var(--neon-blue); color: black; border: none; padding: 12px;
+            border-radius: 12px; font-weight: bold; cursor: pointer; width: 100%;
+            font-family: 'Orbitron';
         }
 
+        /* --- CARRITO --- */
         .floating-cart {
             position: fixed;
-            bottom: 25px;
-            right: 25px;
-            width: 320px;
-            background: rgba(18, 18, 18, 0.95);
-            border: 1px solid var(--neon-blue);
-            border-radius: 20px;
-            padding: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.9);
-            z-index: 1000;
-            backdrop-filter: blur(10px);
+            bottom: 25px; right: 25px;
+            width: 320px; background: rgba(18, 18, 18, 0.95);
+            border: 1px solid var(--neon-blue); border-radius: 20px;
+            padding: 20px; z-index: 1000; backdrop-filter: blur(10px);
         }
 
-        #lista-items {
-            background: rgba(255,255,255,0.05);
-            border-radius: 12px;
-            padding: 10px;
-            max-height: 180px;
-            overflow-y: auto;
-            margin-bottom: 15px;
-        }
+        #lista-items { background: rgba(255,255,255,0.05); border-radius: 12px; padding: 10px; max-height: 150px; overflow-y: auto; margin-bottom: 15px; }
+        
+        input { width: 100%; padding: 12px; background: #252525; border: 1px solid #444; color: white; border-radius: 10px; margin-bottom: 10px; box-sizing: border-box; }
 
-        .item-carrito {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 8px;
-            border-bottom: 1px solid #333;
-            padding-bottom: 5px;
-        }
-
-        input {
-            width: 100%;
-            padding: 12px;
-            background: #252525;
-            border: 1px solid #444;
-            color: white;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            box-sizing: border-box;
-        }
-
-        .btn-finalizar {
-            background: var(--neon-green);
-            color: black;
-            border: none;
-            width: 100%;
-            padding: 14px;
-            border-radius: 12px;
-            font-weight: bold;
-            cursor: pointer;
-            font-family: 'Orbitron', sans-serif;
-        }
+        .btn-finalizar { background: var(--neon-green); color: black; border: none; width: 100%; padding: 14px; border-radius: 12px; font-weight: bold; font-family: 'Orbitron'; cursor: pointer; }
     </style>
 </head>
 <body>
 
     <div id="intro-screen">
-        <img src="https://cdn.discordapp.com/attachments/764669799137411106/1475129625972838410/Copia_de_Copia_de_Copia_de_fashion-removebg-preview.png?ex=699c5d05&is=699b0b85&hm=603828027b7e09961cf5fdf87fa0d70d90fac5ac9698fe1e2d3c96910a07364c&" class="logo-animado" alt="Cargando...">
+        <img src="https://cdn.discordapp.com/attachments/764669799137411106/1475129625972838410/Copia_de_Copia_de_Copia_de_fashion-removebg-preview.png?ex=699c5d05&is=699b0b85&hm=603828027b7e09961cf5fdf87fa0d70d90fac5ac9698fe1e2d3c96910a07364c&" class="logo-animado">
     </div>
 
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+    <nav class="sidebar" id="sidebar">
+        <h2>MENÚ</h2>
+        <ul>
+            <li><a href="#" onclick="toggleMenu()">🏠 Inicio</a></li>
+            <li><a href="#" onclick="toggleMenu()">📦 Categorías</a></li>
+            <li><a href="#" onclick="toggleMenu()">ℹ️ Información</a></li>
+            <li><a href="https://wa.me/543625701025" target="_blank">💬 Contacto</a></li>
+        </ul>
+    </nav>
+
     <div class="header-logo">
-        <img src="https://cdn.discordapp.com/attachments/764669799137411106/1475129625972838410/Copia_de_Copia_de_Copia_de_fashion-removebg-preview.png?ex=699c5d05&is=699b0b85&hm=603828027b7e09961cf5fdf87fa0d70d90fac5ac9698fe1e2d3c96910a07364c&" alt="Logo">
+        <img src="https://cdn.discordapp.com/attachments/764669799137411106/1475129625972838410/Copia_de_Copia_de_Copia_de_fashion-removebg-preview.png?ex=699c5d05&is=699b0b85&hm=603828027b7e09961cf5fdf87fa0d70d90fac5ac9698fe1e2d3c96910a07364c&">
     </div>
 
     <div class="grid-productos">
         <div class="prod-card">
-            <img src="URL_IMAGEN_TECLADO" class="prod-img">
-            <h3>Teclado Mecánico RGB</h3>
+            <img src="URL_PRODUCTO_1" class="prod-img">
+            <h3>Producto Gamer 1</h3>
             <p class="precio">$1.500</p>
-            <button class="btn-add" onclick="agregar('Teclado Mecánico RGB', 1500)">+ AÑADIR</button>
+            <button class="btn-add" onclick="agregar('Producto 1', 1500)">+ AÑADIR</button>
         </div>
         <div class="prod-card">
-            <img src="URL_IMAGEN_MOUSE" class="prod-img">
-            <h3>Mouse Gamer Pro</h3>
+            <img src="URL_PRODUCTO_2" class="prod-img">
+            <h3>Producto Gamer 2</h3>
             <p class="precio">$2.300</p>
-            <button class="btn-add" onclick="agregar('Mouse Gamer Pro', 2300)">+ AÑADIR</button>
+            <button class="btn-add" onclick="agregar('Producto 2', 2300)">+ AÑADIR</button>
         </div>
     </div>
 
     <div class="floating-cart">
-        <h3 style="color: var(--neon-blue); font-family: 'Orbitron'; font-size: 14px; margin-top: 0;">CARRITO DE COMPRAS</h3>
-        <div id="lista-items"><i>Cargando pedido...</i></div>
-        <div style="display:flex; justify-content:space-between; margin-bottom:15px; font-weight:bold;">
+        <h3 style="color: var(--neon-blue); font-family: 'Orbitron'; font-size: 14px; margin-top: 0;">CARRITO</h3>
+        <div id="lista-items"><i>Vacío</i></div>
+        <div style="display:flex; justify-content:space-between; margin-bottom:15px;">
             <span>TOTAL:</span>
-            <span style="color:var(--neon-blue);">$<span id="total-pago">0</span></span>
+            <span>$<span id="total-pago">0</span></span>
         </div>
-        <input type="text" id="nombre-cliente" placeholder="Tu Nombre y Apellido">
-        <button class="btn-finalizar" onclick="enviarPedido()">ENVIAR A WHATSAPP</button>
+        <input type="text" id="nombre-cliente" placeholder="Tu Nombre">
+        <button class="btn-finalizar" onclick="enviarPedido()">PEDIR POR WHATSAPP</button>
     </div>
 
     <script>
+        // Animación Intro
         window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.getElementById('intro-screen').classList.add('fade-out');
-            }, 3000); 
+            setTimeout(() => { document.getElementById('intro-screen').classList.add('fade-out'); }, 2500);
         });
 
+        // Menú Toggle
+        function toggleMenu() { document.getElementById('sidebar').classList.toggle('active'); }
+
+        // Carrito Lógica
         function actualizarVisual() {
             const lista = document.getElementById('lista-items');
             const totalTxt = document.getElementById('total-pago');
             let carrito = JSON.parse(localStorage.getItem('mi_tienda_neon')) || [];
-            
             if (carrito.length === 0) {
-                lista.innerHTML = "<i>El carrito está vacío</i>";
+                lista.innerHTML = "<i>Vacío</i>";
                 totalTxt.innerText = "0";
             } else {
                 let total = 0;
                 lista.innerHTML = carrito.map((item, index) => {
                     total += item.precio;
-                    return `<div class="item-carrito">
+                    return `<div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:5px;">
                         <span>${item.nombre}</span>
-                        <span>$${item.precio} <span style="color:red; cursor:pointer;" onclick="borrar(${index})">✕</span></span>
+                        <span>$${item.precio} <b style="color:red; cursor:pointer;" onclick="borrar(${index})">✕</b></span>
                     </div>`;
                 }).join('');
                 totalTxt.innerText = total;
@@ -277,14 +223,13 @@
         function enviarPedido() {
             const nombre = document.getElementById('nombre-cliente').value;
             let carrito = JSON.parse(localStorage.getItem('mi_tienda_neon')) || [];
-            if (!nombre || carrito.length === 0) { alert("Completa tus datos"); return; }
+            if (!nombre || carrito.length === 0) { alert("Faltan datos"); return; }
             let msj = `*NUEVO PEDIDO*%0A*Cliente:* ${nombre}%0A%0A`;
             let total = 0;
             carrito.forEach(item => { msj += `• ${item.nombre} ($${item.precio})%0A`; total += item.precio; });
             msj += `%0A*TOTAL: $${total}*`;
             window.open(`https://wa.me/543625701025?text=${msj}`, '_blank');
         }
-
         actualizarVisual();
     </script>
 </body>
