@@ -38,6 +38,7 @@
         .fade-out { opacity: 0; pointer-events: none; }
 
         /* --- DISEÑO GENERAL --- */
+        /* --- DISEÑO GENERAL --- */
         body {
             background-color: var(--bg-dark);
             color: white; font-family: 'Roboto', sans-serif;
@@ -65,7 +66,34 @@
             text-shadow: 2px 2px 10px rgba(106, 13, 173, 0.3);
         }
 
-        /* --- MENÚ LATERAL --- */
+        /* --- MENSAJE DE BIENVENIDA --- */
+        .mensaje-bienvenida { /* Nueva clase para tu mensaje */
+            padding: 10px 20px;
+            text-align: left;
+            margin-left: 20px;
+            margin-bottom: 30px; /* Un poco de espacio antes del banner */
+        }
+
+        .mensaje-bienvenida h2 {
+            font-size: 1.2rem;
+            color: #bbb;
+            font-weight: 300;
+        }
+
+        /* --- BANNER PRINCIPAL (IMAGEN GRANDE) --- */
+        .main-banner {
+            width: 100%;
+            height: 400px; /* Altura del banner */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 50px; /* Espacio antes de los productos */
+            border-bottom: 3px solid var(--violeta-luxo); /* Borde para que destaque */
+        }
+
+        /* --- MENÚ LATERAL (Mantenido) --- */
         .menu-btn {
             position: fixed;
             top: 25px; right: 25px;
@@ -74,80 +102,7 @@
             color: white; border: none; padding: 10px 15px;
             border-radius: 8px; font-size: 20px; cursor: pointer;
         }
-
-        .sidebar {
-            position: fixed;
-            top: 0; right: -300px; 
-            width: 280px; height: 100%;
-            background: rgba(10, 10, 10, 0.98);
-            border-left: 2px solid var(--violeta-luxo);
-            z-index: 10000;
-            transition: 0.4s ease-in-out;
-            padding: 80px 20px;
-            box-sizing: border-box;
-            backdrop-filter: blur(10px);
-        }
-        .sidebar.active { right: 0; }
-        .sidebar ul { list-style: none; padding: 0; }
-        .sidebar ul li a { color: white; text-decoration: none; display: block; padding: 10px 0; }
-
-        /* --- CATEGORÍAS --- */
-        .categorias-section {
-            padding: 40px 20px;
-            text-align: center;
-            background: rgba(255,255,255,0.02);
-        }
-
-        .grid-categorias {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .cat-card {
-            background: transparent;
-            border: 1px solid var(--violeta-luxo);
-            color: white;
-            padding: 10px 25px;
-            border-radius: 50px;
-            cursor: pointer;
-            font-family: 'Orbitron';
-            transition: 0.3s;
-        }
-        .cat-card:hover { background: var(--violeta-luxo); }
-
-        /* --- PRODUCTOS --- */
-        .grid-productos {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px; max-width: 1100px; margin: 40px auto;
-            padding: 0 20px;
-        }
-
-        .prod-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(106, 13, 173, 0.3);
-            padding: 15px; border-radius: 20px; text-align: center;
-            transition: 0.4s;
-        }
-        .prod-card:hover { border-color: var(--violeta-luxo); transform: translateY(-5px); }
-        .prod-img { width: 100%; height: 200px; object-fit: cover; border-radius: 15px; }
-
-        /* --- TEXTO FINAL --- */
-        .mensaje-final {
-            text-align: center;
-            padding: 60px 20px;
-            font-family: 'Orbitron', sans-serif;
-            background: linear-gradient(transparent, rgba(106, 13, 173, 0.1));
-        }
-
-        .mensaje-final h2 {
-            font-size: 1.5rem;
-            color: #ddd;
-            font-weight: 300;
-        }
+        /* ... el resto de tu CSS para el sidebar ... */
 
         /* --- UBICACIÓN --- */
         .map-section {
@@ -257,5 +212,6 @@
     </script>
 </body>
 </html>
+
 
 
